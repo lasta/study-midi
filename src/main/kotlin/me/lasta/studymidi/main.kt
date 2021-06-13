@@ -1,6 +1,6 @@
 package me.lasta.studymidi
 
-import me.lasta.studymidi.TemporalyMidiEvent.Companion.toMidiEvent
+import me.lasta.studymidi.TemporallyMidiEvent.Companion.toMidiEvent
 import java.io.File
 import javax.sound.midi.MidiEvent
 import javax.sound.midi.MidiMessage
@@ -13,12 +13,12 @@ typealias MidiSequence = javax.sound.midi.Sequence
 
 const val MIDI_FILE_NAME = "examples_from_scratch.mid"
 
-data class TemporalyMidiEvent(
+data class TemporallyMidiEvent(
     val message: MidiMessage,
     val tick: Long
 ) {
     companion object {
-        fun TemporalyMidiEvent.toMidiEvent(): MidiEvent = MidiEvent(message, tick)
+        fun TemporallyMidiEvent.toMidiEvent(): MidiEvent = MidiEvent(message, tick)
     }
 }
 
@@ -30,8 +30,8 @@ fun main() {
     val tracks: Array<Track> = sequence.tracks
     val track1: Track = tracks[1]
 
-    val messages: MutableList<TemporalyMidiEvent> = (0 until track1.size()).map { index ->
-        TemporalyMidiEvent(
+    val messages: MutableList<TemporallyMidiEvent> = (0 until track1.size()).map { index ->
+        TemporallyMidiEvent(
             message = track1[index].message,
             tick = track1[index].tick
         )
